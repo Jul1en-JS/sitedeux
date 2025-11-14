@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atelier Muller</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+    <!-- En-tête -->
+    <header>
+        <h1>Atelier Muller</h1>
+        <nav>
+            <div class="menu-toggle" id="mobile-menu">
+              &#9776; <!-- icône hamburger -->
+            </div>
+            <ul class="nav-list">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Section Accueil -->
+    <section id="accueil" class="hero">
+        <h2>Bienvenue sur mon site</h2>
+        <p>Je crée des solutions simples et efficaces pour artisans, indépendants et petites entreprises.</p>
+        <a href="#contact" class="btn">Me contacter</a>
+    </section>
+
+    <!-- Section Services avec cartes flip -->
+    <section id="services">
+        <h2>Mes services</h2>
+        <div class="cards">
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <h3>Site vitrine</h3>
+                        <p>Un site professionnel pour présenter votre activité.</p>
+                    </div>
+                    <div class="card-back">
+                        <h3>Site vitrine</h3>
+                        <p>Présentez votre entreprise en ligne, augmentez votre visibilité et gagnez la confiance de vos clients rapidement.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <h3>Automatisation</h3>
+                        <p>Des formulaires intelligents pour simplifier vos tâches.</p>
+                    </div>
+                    <div class="card-back">
+                        <h3>Automatisation</h3>
+                        <p>Économisez du temps et réduisez les erreurs grâce à des formulaires et processus automatisés adaptés à vos besoins.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <h3>Optimisation</h3>
+                        <p>Améliorez votre visibilité en ligne et gagnez du temps.</p>
+                    </div>
+                    <div class="card-back">
+                        <h3>Optimisation</h3>
+                        <p>Boostez votre présence en ligne et facilitez la gestion de votre activité pour plus d’efficacité et de résultats.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact">
+        <h2>Contactez-moi</h2>
+        <form action="https://formspree.io/f/xdkykjdp" method="POST">
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="name" required>
+
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Message :</label>
+            <textarea id="message" name="message" rows="4"></textarea>
+
+            <button type="submit">Envoyer</button>
+        </form>
+    </section>
+
+    <!-- Pied de page -->
+    <footer>
+        <p>© 2025 Atelier Muller — Tous droits réservés</p>
+    </footer>
+
+    <!-- JS -->
+    <script src="script2.js"></script>
+</body>
+</html>

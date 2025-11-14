@@ -1,0 +1,235 @@
+/* ============================ */
+/*       STYLE GÉNÉRAL          */
+/* ============================ */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #ffffff;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Conteneur général pour limiter la largeur */
+section {
+    max-width: 1100px;
+    margin: auto;
+    padding: 50px 20px;
+}
+
+/* ============================ */
+/*         HEADER               */
+/* ============================ */
+
+header {
+    background: #222;
+    color: white;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+/* MENU */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #ffb100; /* couleur dorée */
+}
+
+/* ============================ */
+/*        SECTION ACCUEIL       */
+/* ============================ */
+
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    background: #ffb100;
+    padding: 12px 25px;
+    border-radius: 5px;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+
+.btn:hover {
+    background: #e29b00;
+}
+
+/* ============================ */
+/*        CARTES SERVICES       */
+/* ============================ */
+
+/* container centered and width limited so it aligns with title */
+.cards {
+  display: flex;
+  justify-content: center;      /* centre le groupe */
+  gap: 44px;                    /* espace entre les cartes */
+  flex-wrap: wrap;              /* retour à la ligne si écran petit */
+  margin: 0 auto 10px auto;
+  width: 100%;
+  max-width: 980px;             /* garde le bloc au centre */
+  padding: 10px;
+}
+
+/* each card is the box that contains the inner flipped part */
+.card {
+  width: 260px;
+  height: 200px;
+  perspective: 1200px;          /* active l'effet 3D */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  /* animation on scroll */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+/* inner element that rotates. NOT the .card itself */
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d; /* garde les faces 3D */
+  transition: transform 0.7s cubic-bezier(.2,.9,.2,1);
+  transform-origin: 50% 50%;    /* tournage au centre exact */
+}
+
+/* hover (desktop) or active class (mobile) -> rotate the inner */
+.card:hover .card-inner,
+.card.flip .card-inner /* .flip peut être ajouté via JS pour mobile */ {
+  transform: rotateY(180deg);
+}
+
+/* front & back faces - couvrent exactement l'espace */
+.card-front, .card-back {
+  position: absolute;
+  inset: 0;                     /* top/right/bottom/left = 0 => colle */
+  backface-visibility: hidden;  /* cache la face arrière quand on voit l’avant */
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 18px;
+  text-align: center;
+}
+
+/* style face avant */
+.card-front {
+  background: #ffffff;
+}
+
+/* style face arrière */
+.card-back {
+  background: linear-gradient(180deg,#ffb100,#e29b00);
+  color: #fff;
+  transform: rotateY(180deg);   /* on inverse la face arrière pour le flip */
+}
+
+/* show-card class (ajoutée par JS au scroll) */
+.card.show-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#services {
+    margin-bottom: 50px; /* plus d'espace */
+}
+
+/* ============================ */
+/*          CONTACT             */
+/* ============================ */
+
+#contact {
+    background: #f7f7f7; /* plus propre */
+    border-top: 1px solid #ddd;
+    padding: 60px 20px;
+}
+
+#contact form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 60px; /* plus d’espace */
+}
+
+input, textarea {
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #bbb;
+}
+
+button {
+    background: #ffb100;
+    padding: 12px;
+    border: none;
+    color: black;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #e29b00;
+}
+
+/* ============================ */
+/*           FOOTER             */
+/* ============================ */
+
+footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* ============================ */
+/*   ANIMATION SECTIONS SCROLL  */
+/* ============================ */
+
+section {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: 0.7s ease;
+}
+
+section.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ======= BARRE DE PROGRESSION ======= */
+#progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background-color: #ffb100;
+    width: 0;
+    z-index: 1000;
+}
