@@ -1,54 +1,48 @@
-// ====== ANIMATIONS SECTIONS (toggle show) ======
+// ======= ANIMATION AU SCROLL POUR SECTIONS =======
 const sections = document.querySelectorAll('section');
+
 function checkSections() {
-  const trigger = window.innerHeight * 0.85;
-  sections.forEach(s => {
-    const top = s.getBoundingClientRect().top;
-    if (top < trigger && top > -s.offsetHeight) s.classList.add('show');
-    else s.classList.remove('show');
-  });
+    const triggerBottom = window.innerHeight / 5 * 4;
+    sections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        if(sectionTop < triggerBottom && sectionTop > -section.offsetHeight){
+            section.classList.add('show');
+        } else {
+            section.classList.remove('show');
+        }
+    });
 }
+
 window.addEventListener('scroll', checkSections);
-window.addEventListener('resize', checkSections);
 checkSections();
 
-// ====== CARDS animation on scroll (repeats when exit/enter) ======
+// ======= ANIMATION DES CARTES SERVICES =======
 const cards = document.querySelectorAll('.card');
-function checkCards() {
-  const trigger = window.innerHeight * 0.9;
-  cards.forEach(card => {
-    const top = card.getBoundingClientRect().top;
-    if (top < trigger && top > -card.offsetHeight) card.classList.add('show-card');
-    else card.classList.remove('show-card');
-  });
-}
-window.addEventListener('scroll', checkCards);
-window.addEventListener('resize', checkCards);
-checkCards();
 
-// ====== PROGRESS BAR ======
-let progressBar = document.getElementById('progress-bar');
-if (!progressBar) {
-  progressBar = document.createElement('div');
-  progressBar.id = 'progress-bar';
-  document.body.prepend(progressBar);
-}
-window.addEventListener('scroll', () => {
-  const docHeight = document.body.scrollHeight - window.innerHeight;
-  const scrolled = (window.scrollY / (docHeight || 1)) * 100;
-  progressBar.style.width = Math.min(100, Math.max(0, scrolled)) + '%';
-});
-
-// ====== MOBILE: flip on tap (because hover n'existe pas) ======
-function enableMobileFlip() {
-  if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+function animateCards() {
+    const triggerBottom = window.innerHeight / 5 * 4;
     cards.forEach(card => {
-      card.addEventListener('click', () => {
-        card.classList.toggle('flip'); // active .flip -> CSS tourne .card-inner
-        // optionally remove flip after 3s so it resets:
-        setTimeout(() => card.classList.remove('flip'), 4000);
-      });
+        const cardTop = card.getBoundingClientRect().top;
+        if(cardTop < triggerBottom && cardTop > -card.offsetHeight){
+            card.classList.add('show-card');
+        } else {
+            card.classList.remove('show-card');
+        }
     });
-  }
 }
-enableMobileFlip();
+
+window.addEventListener('scroll', animateCards);
+animateCards();
+
+// ======= SCROLL PROGRESS BAR =======
+const progressBar = document.createElement('div');
+progressBar.id = 'progress-bar';
+document.body.prepend(progressBar);
+
+window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.body.scrollHeight - window.innerHeight;
+    const scrollPercent = (scrollTop / docHeight) * 100;
+    progressBar.style.width = scrollPercent + '%';
+});
+// ======= FIN DU SCRIPT =======
